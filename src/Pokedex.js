@@ -6,7 +6,9 @@ class Pokedex extends Component {
   static defaultProps = {
     pokemon: [
       { id: 4, name: "Charmander", type: "fire", base_experience: 62 },
+      { id: 6, name: "Charizard", type: "fire", base_experience: 200 },
       { id: 7, name: "Squirtle", type: "water", base_experience: 63 },
+      { id: 8, name: "Wartortle", type: "water", base_experience: 120 },
       { id: 11, name: "Metapod", type: "bug", base_experience: 72 },
       { id: 12, name: "Butterfree", type: "flying", base_experience: 178 },
       { id: 25, name: "Pikachu", type: "electric", base_experience: 112 },
