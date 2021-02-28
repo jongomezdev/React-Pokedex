@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.Pokedex-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h1 {
+  letter-spacing: 3px;
+}
