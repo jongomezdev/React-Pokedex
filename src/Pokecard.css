@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.Pokecard {
+  background-color: rgb(222, 253, 224);
+  font-family: "Lato", sans-serif;
+}
