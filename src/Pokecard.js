@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Pokecard.css";
+import { Link } from "react-router-dom";
 // const POKE_API =
 //   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
@@ -30,22 +31,24 @@ class Pokecard extends Component {
   render() {
     // let imgSrc = `${POKE_API}${padToThree(this.props.id)}.png`;
     return (
-      <div className="Pokecard">
-        <h1>
-          {this.state.name
-            .toLowerCase()
-            .split(" ")
-            .map(
-              (letter) => letter.charAt(0).toUpperCase() + letter.substring(1)
-            )
-            .join(" ")}
-        </h1>
-        <img className="Pokemon" src={this.state.imageUrl} alt="" />
+      <Link to={`pokemon/${this.state.pokemonIndex}`}>
+        <div className="Pokecard">
+          <h1>
+            {this.state.name
+              .toLowerCase()
+              .split(" ")
+              .map(
+                (letter) => letter.charAt(0).toUpperCase() + letter.substring(1)
+              )
+              .join(" ")}
+          </h1>
+          <img className="Pokemon" src={this.state.imageUrl} alt="" />
 
-        {/* <img className="Pokemon" src={imgSrc} alt={this.props.name} />
+          {/* <img className="Pokemon" src={imgSrc} alt={this.props.name} />
         <div className="Pokecard-data">Type: {this.props.type}</div>
         <div className="Pokecard-data">EXP: {this.props.exp}</div> */}
-      </div>
+        </div>
+      </Link>
     );
   }
 }

@@ -12,11 +12,17 @@
   margin: 1rem;
   box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
   border-radius: 10px;
+  text-decoration: inherit;
+  color: black;
 }
 
 .Pokemon {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
+  -moz-user-select: none;
+  -website-user-select: none;
+  user-select: none;
+  -o-user-select: none;
 }
 
 .Pokecard-data {
