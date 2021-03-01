@@ -217,6 +217,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar bg-success"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.hp}%`,
@@ -236,6 +237,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar bg-warning"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.attack}%`,
@@ -255,6 +257,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar bg-info"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.defense}%`,
@@ -274,6 +277,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.speed}%`,
@@ -293,6 +297,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar bg-danger"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.specialAttack}%`,
@@ -312,6 +317,7 @@ class Pokemon extends Component {
                     <div className="progress">
                       <div
                         className="progress-bar bg-info"
+                        // eslint-disable-next-line
                         role="progressBar"
                         style={{
                           width: `${this.state.stats.specialDefense}%`,
@@ -424,7 +430,12 @@ class Pokemon extends Component {
           </div>
           <div class="card-footer text-muted">
             Data From{" "}
-            <a href="https://pokeapi.co/" target="_blank" className="card-link">
+            <a
+              href="https://pokeapi.co/"
+              target="_blank"
+              rel="noreferrer"
+              className="card-link"
+            >
               PokeAPI.co
             </a>
           </div>
