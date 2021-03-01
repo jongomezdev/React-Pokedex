@@ -20,18 +20,20 @@ class Pokedex extends Component {
   // };
 
   state = {
-    url: "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0",
+    url: `https://pokeapi.co/api/v2/pokemon/?limit=89&offset=10`,
     pokemon: null,
   };
 
   async componentDidMount() {
     const res = await axios.get(this.state.url);
     this.setState({ pokemon: res.data["results"] });
+    console.log(res.data["results"]);
   }
 
   render() {
     return (
       <div className="Pokedex">
+        <h1>Pokedex!</h1>
         {this.state.pokemon ? (
           <div className="Pokedex-cards">
             {this.state.pokemon.map((pokemon) => (

@@ -5,6 +5,8 @@ import "./Pokecard.css";
 
 // const POKE_API = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
 
+// const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon${pokemonIndex}.png?raw=true`;
+
 // let padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3) : number);
 
 class Pokecard extends Component {
@@ -15,24 +17,31 @@ class Pokecard extends Component {
   };
 
   componentDidMount() {
-    const { name } = this.props;
-    const pokemonIndex = (number) =>
-      number <= 999 ? `00${number}`.slice(-3) : number;
-    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemonIndex}.png`;
+    const { name, url } = this.props;
+    let pokemonIndex = url.split("/")[url.split("/").length - 2];
+    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0${pokemonIndex}.png`;
 
     this.setState({
-      name: name,
-      imageUrl: imageUrl,
-      pokemonIndex: pokemonIndex,
+      name,
+      imageUrl,
+      pokemonIndex,
     });
   }
   render() {
     // let imgSrc = `${POKE_API}${padToThree(this.props.id)}.png`;
     return (
       <div className="Pokecard">
-        <h1>{this.state.name}</h1>
-        <img src={this.state.imageUrl} alt={this.state.name} />
-        {/* <img className="Pokemon" src={imageUrl} alt={this.state.name} /> */}
+        <h1>
+          {this.state.name
+            .toLowerCase()
+            .split(" ")
+            .map(
+              (letter) => letter.charAt(0).toUpperCase() + letter.substring(1)
+            )
+            .join(" ")}
+        </h1>
+        <img className="Pokemon" src={this.state.imageUrl} alt="" />
+
         {/* <img className="Pokemon" src={imgSrc} alt={this.props.name} />
         <div className="Pokecard-data">Type: {this.props.type}</div>
         <div className="Pokecard-data">EXP: {this.props.exp}</div> */}
