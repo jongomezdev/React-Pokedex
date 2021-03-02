@@ -12,7 +12,8 @@ class Pokecard extends Component {
   componentDidMount() {
     const { name, url } = this.props;
     let pokemonIndex = url.split("/")[url.split("/").length - 2];
-    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0${pokemonIndex}.png`;
+    const id = pokemonIndex.toString().padStart(3, "0");
+    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
 
     this.setState({
       name,

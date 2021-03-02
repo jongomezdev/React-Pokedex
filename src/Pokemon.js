@@ -57,7 +57,8 @@ class Pokemon extends Component {
     // Get pokemon info
     const pokemonRes = await axios.get(pokemonUrl);
     const name = pokemonRes.data.name;
-    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0${pokemonIndex}.png`;
+    const id = pokemonIndex.toString().padStart(3, "0");
+    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
     let { hp, attack, defense, speed, specialAttack, specialDefense } = "";
 
     pokemonRes.data.stats.map((stat) => {

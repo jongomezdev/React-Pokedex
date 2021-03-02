@@ -5,7 +5,7 @@ import axios from "axios";
 
 class Pokedex extends Component {
   state = {
-    url: `https://pokeapi.co/api/v2/pokemon/?limit=89&offset=9`,
+    url: `https://pokeapi.co/api/v2/pokemon/?limit=150&offset=0`,
     pokemon: null,
   };
 
