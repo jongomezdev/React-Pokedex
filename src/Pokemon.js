@@ -1,50 +1,50 @@
-import React, { Component } from "react";
-import "./Pokemon.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import './Pokemon.css';
+import axios from 'axios';
 
 const TYPE_COLORS = {
-  bug: "B1C12E",
-  dark: "4F3A2D",
-  dragon: "755EDF",
-  electric: "FCBC17",
-  fairy: "F4B1F4",
-  fighting: "823551D",
-  fire: "E73B0C",
-  flying: "A3B3F7",
-  ghost: "6060B2",
-  grass: "74C236",
-  ground: "D3B357",
-  ice: "A3E7FD",
-  normal: "C8C4BC",
-  poison: "934594",
-  psychic: "ED4882",
-  rock: "B9A156",
-  steel: "B5B5C3",
-  water: "3295F6",
+  bug: 'B1C12E',
+  dark: '4F3A2D',
+  dragon: '755EDF',
+  electric: 'FCBC17',
+  fairy: 'F4B1F4',
+  fighting: '823551D',
+  fire: 'E73B0C',
+  flying: 'A3B3F7',
+  ghost: '6060B2',
+  grass: '74C236',
+  ground: 'D3B357',
+  ice: 'A3E7FD',
+  normal: 'C8C4BC',
+  poison: '934594',
+  psychic: 'ED4882',
+  rock: 'B9A156',
+  steel: 'B5B5C3',
+  water: '3295F6',
 };
 
 class Pokemon extends Component {
   state = {
-    name: "",
-    pokemonIndex: "",
-    imageUrl: "",
+    name: '',
+    pokemonIndex: '',
+    imageUrl: '',
     types: [],
-    description: "",
+    description: '',
     stats: {
-      hp: "",
-      attack: "",
-      defense: "",
-      speed: "",
-      specialAttack: "",
-      specialDefense: "",
+      hp: '',
+      attack: '',
+      defense: '',
+      speed: '',
+      specialAttack: '',
+      specialDefense: '',
     },
-    height: "",
-    weight: "",
-    abilities: "",
-    genderRatioMale: "",
-    genderRatioFemale: "",
-    evs: "",
-    hatchSteps: "",
+    height: '',
+    weight: '',
+    abilities: '',
+    genderRatioMale: '',
+    genderRatioFemale: '',
+    evs: '',
+    hatchSteps: '',
   };
 
   async componentDidMount() {
@@ -57,33 +57,33 @@ class Pokemon extends Component {
     // Get pokemon info
     const pokemonRes = await axios.get(pokemonUrl);
     const name = pokemonRes.data.name;
-    const id = pokemonIndex.toString().padStart(3, "0");
+    const id = pokemonIndex.toString().padStart(3, '0');
     const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
-    let { hp, attack, defense, speed, specialAttack, specialDefense } = "";
+    let { hp, attack, defense, speed, specialAttack, specialDefense } = '';
 
     pokemonRes.data.stats.map((stat) => {
       switch (stat.stat.name) {
-        case "hp":
-          hp = stat["base_stat"];
+        case 'hp':
+          hp = stat['base_stat'];
           break;
-        case "attack":
-          attack = stat["base_stat"];
+        case 'attack':
+          attack = stat['base_stat'];
           break;
-        case "defense":
-          defense = stat["base_stat"];
+        case 'defense':
+          defense = stat['base_stat'];
           break;
-        case "speed":
-          speed = stat["base_stat"];
+        case 'speed':
+          speed = stat['base_stat'];
           break;
-        case "special-attack":
-          specialAttack = stat["base_stat"];
+        case 'special-attack':
+          specialAttack = stat['base_stat'];
           break;
-        case "special-defense":
-          specialDefense = stat["base_stat"];
+        case 'special-defense':
+          specialDefense = stat['base_stat'];
           break;
       }
     });
-    //Conver Decimeters to Feet.... The + 0.001 * 100.. is for rounding to 2 decimal places
+    //Convert Decimeters to Feet.... The + 0.001 * 100.. is for rounding to 2 decimal places
     const height =
       Math.round((pokemonRes.data.height * 0.328084 + 0.0001) * 100) / 100;
     const weight =
@@ -93,9 +93,9 @@ class Pokemon extends Component {
     const abilities = pokemonRes.data.abilities.map((ability) => {
       return ability.ability.name
         .toLowerCase()
-        .split("-")
+        .split('-')
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(" ");
+        .join(' ');
     });
     const evs = pokemonRes.data.stats
       .filter((stat) => {
@@ -107,37 +107,37 @@ class Pokemon extends Component {
       .map((stat) => {
         return `${stat.effort} ${stat.stat.name}`
           .toLowerCase()
-          .split("-")
+          .split('-')
           .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ");
+          .join(' ');
       })
-      .join(", ");
+      .join(', ');
 
     await axios.get(pokemonSpeciesUrl).then((res) => {
-      let description = "";
+      let description = '';
       res.data.flavor_text_entries.some((flavor) => {
-        if (flavor.language.name === "en") {
+        if (flavor.language.name === 'en') {
           description = flavor.flavor_text;
           return;
         }
       });
-      const femaleRate = res.data["gender_rate"];
+      const femaleRate = res.data['gender_rate'];
       const genderRatioFemale = 12.5 * femaleRate;
       const genderRatioMale = 12.5 * (8 - femaleRate);
 
-      const catchRate = Math.round((100 / 255) * res.data["capture_rate"]);
+      const catchRate = Math.round((100 / 255) * res.data['capture_rate']);
 
-      const eggGroups = res.data["egg_groups"]
+      const eggGroups = res.data['egg_groups']
         .map((group) => {
           return group.name
             .toLowerCase()
-            .split("-")
+            .split('-')
             .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-            .join(" ");
+            .join(' ');
         })
-        .join(", ");
+        .join(', ');
 
-      const hatchSteps = 255 * (res.data["hatch_counter"] + 1);
+      const hatchSteps = 255 * (res.data['hatch_counter'] + 1);
 
       this.setState({
         description,
@@ -179,9 +179,9 @@ class Pokemon extends Component {
                 <h4 className="float-left">
                   {this.state.name
                     .toLowerCase()
-                    .split("-")
+                    .split('-')
                     .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                    .join(" ")}
+                    .join(' ')}
                 </h4>
               </div>
               <div className="col-7">
@@ -192,14 +192,14 @@ class Pokemon extends Component {
                       className="badge badge-success badge-pill mr-1"
                       style={{
                         backgroundColor: `#${TYPE_COLORS[type]}`,
-                        color: "white",
+                        color: 'white',
                       }}
                     >
                       {type
                         .toLowerCase()
-                        .split("-")
+                        .split('-')
                         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                        .join(" ")}
+                        .join(' ')}
                     </span>
                   ))}
                 </div>
@@ -374,7 +374,7 @@ class Pokemon extends Component {
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioFemale}%`,
-                          backgroundColor: "#c2185b",
+                          backgroundColor: '#c2185b',
                         }}
                         aria-valuenow="15"
                         aria-valuemin="0"
@@ -387,7 +387,7 @@ class Pokemon extends Component {
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioMale}%`,
-                          backgroundColor: "#1976d2",
+                          backgroundColor: '#1976d2',
                         }}
                         aria-valuenow="30"
                         aria-valuemin="0"
@@ -430,7 +430,7 @@ class Pokemon extends Component {
             </div>
           </div>
           <div class="card-footer text-muted">
-            Data From{" "}
+            Data From{' '}
             <a
               href="https://pokeapi.co/"
               target="_blank"
