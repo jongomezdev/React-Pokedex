@@ -1,44 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Pokecard.css";
 import { Link } from "react-router-dom";
 
-class Pokecard extends Component {
-  state = {
-    name: "",
-    imageUrl: "",
-    pokemonIndex: "",
-  };
+export const Pokecard = ({name, url, ...props}) => {
 
-  componentDidMount() {
-    const { name, url } = this.props;
-    let pokemonIndex = url.split("/")[url.split("/").length - 2];
-    const id = pokemonIndex.toString().padStart(3, "0");
-    const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
+  const pokemonIndex = url.split("/")[url.split("/").length - 2];
+  const id = pokemonIndex.toString().padStart(3, "0");
+  const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
+  const pokemonName = name.charAt(0).toUpperCase() + name.slice(1);
 
-    this.setState({
-      name,
-      imageUrl,
-      pokemonIndex,
-    });
-  }
-  render() {
-    return (
-      <Link to={`pokemon/${this.state.pokemonIndex}`}>
-        <div className="Pokecard">
-          <h1>
-            {this.state.name
-              .toLowerCase()
-              .split(" ")
-              .map(
-                (letter) => letter.charAt(0).toUpperCase() + letter.substring(1)
-              )
-              .join(" ")}
-          </h1>
-          <img className="Pokemon" src={this.state.imageUrl} alt="" />
-        </div>
-      </Link>
-    );
-  }
+  return (
+    <Link to={`pokemon/${pokemonIndex}`}>
+      <div className="Pokecard">
+        <h1>
+          {pokemonName}
+        </h1>
+        <img className="Pokemon" src={imageUrl} alt="" />
+      </div>
+    </Link>
+  );
 }
-
-export default Pokecard;
